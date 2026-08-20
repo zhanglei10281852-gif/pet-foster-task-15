@@ -50,8 +50,7 @@ func (s *Service) CreateOrder(ctx context.Context, principal Principal, input Cr
 	} else if err != nil {
 		return FosterOrder{}, err
 	}
-	room := Room{Status: status, Capacity: capacity}
-	if !room.Bookable() {
+	if status != "AVAILABLE" {
 		return FosterOrder{}, fmt.Errorf("%w: room is unavailable", ErrConflict)
 	}
 	var overlapping int

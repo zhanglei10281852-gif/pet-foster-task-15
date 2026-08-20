@@ -54,13 +54,6 @@ type Room struct {
 	UpdatedAt        time.Time `json:"updateTime"`
 }
 
-func (r Room) Bookable() bool {
-	if r.Status == "CLEANING" {
-		return false
-	}
-	return r.CurrentOccupancy < r.Capacity
-}
-
 type ServiceItem struct {
 	ID          int64     `json:"serviceId"`
 	Name        string    `json:"serviceName"`

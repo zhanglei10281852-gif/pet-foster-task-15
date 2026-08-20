@@ -178,7 +178,7 @@ func (s *Service) AvailableRooms(ctx context.Context, principal Principal, typ s
 	}
 	rooms := make([]Room, 0, len(page.List))
 	for _, room := range page.List {
-		if room.Bookable() {
+		if room.Status == "AVAILABLE" && room.CurrentOccupancy < room.Capacity {
 			rooms = append(rooms, room)
 		}
 	}
